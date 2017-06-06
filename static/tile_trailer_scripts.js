@@ -9,7 +9,6 @@ function populatizeThisPage(){
     var wrapperWidth = wrapperElement.width();
     var divHeight = tileSpace.height();
     var divWidth = tileSpace.width();
-    var counter = 0;
     var remainingSquares;
 
     // console.log("Screen Object", screen);
@@ -25,14 +24,13 @@ function populatizeThisPage(){
     while ((wrapperHeight - divHeight) >= 100 ){
         divHeight = tileSpace.height();
         divWidth = tileSpace.width();
-        var widthDiff = wrapperWidth - divWidth;
-        var heightDiff = wrapperHeight - divHeight;
+        // var widthDiff = wrapperWidth - divWidth;
+        // var heightDiff = wrapperHeight - divHeight;
 
         // console.log("Height Diff: ", heightDiff);
         // console.log("Width Diff: ", widthDiff);
-        tileSpace.append('<div class="square" ' + ' onmouseover="this.style.backgroundColor = getRandomColor()" ' +
-            'onmouseout="this.style.backgroundColor = backwardsYo() "></div>');
-        counter++;
+        tileSpace.append('<div class="square" onmouseover="this.style.backgroundColor = getRandomColor()" ' +
+            'onmouseout="backwardsYo($(this))"></div>');
     }
     //Formula to fill in remainder of squares on bottom row
     //Here's how it works, you take the width of the div, divide it by the width dimension of the square
@@ -43,16 +41,21 @@ function populatizeThisPage(){
 
     //Now we take the number of the remaining squares and "make it so"
     for (var i = 1; i <= remainingSquares; i++){
-        tileSpace.append('<div class="square"></div>');
+        tileSpace.append('<div class="square" onmouseover="this.style.backgroundColor = getRandomColor() " ' +
+            'onmouseout="backwardsYo($(this))"></div>');
     }
     $('#populate_this_page').fadeOut(700);
     $('#static_greeting').fadeOut(700);
 }
 
 
-function backwardsYo(){
-    return 'white';
+function backwardsYo(element){
+    setTimeout(function(){
+        element.css("background-color", "white");
+    }, 500);
 }
+
+
 
 function getRandomColor(){
     var letters = '0123456789ABCDEF';

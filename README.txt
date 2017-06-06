@@ -10,10 +10,10 @@ wrapper height and width, unfortunately it does not finish generating the last r
 I created an algorithm that takes the width of the wrapper (which is as large as the screen) and divide that by the width of a square.
 I round that result down and subtract it by 2, then I take that final number and generate the remaining squares.
 
-Currently working on javascript promises so that I can create a delay on the returning to white background color to give off the 
-illusion of a trail.
+The trailing functionality works. I used the onmouseout even to call a function that has a setTimeout. I currently have it set for half
+a second == 500 ms(the unit of measurement used for setTimeout). Feel free to change the time if you want. 
 
-requirements:
+Requirements:
 Django (1.11.2)
 pip (9.0.1)
 pytz (2017.2)
